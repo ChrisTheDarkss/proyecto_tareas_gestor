@@ -1,11 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gestor de Tareas - Organiza tus tareas con tablero Kanban" />
+  <meta name="author" content="Gestor de Tareas" />
+  <title>Gestor de Tareas</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
 </head>
 <body>
-    
+
+  <!-- ===== CABECERA PRINCIPAL ===== -->
+  <header class="cabecera">
+    <nav class="navegacion" aria-label="Navegación principal">
+      <figure class="logo">
+        <img src="assets/img/logo.png" alt="Logo del Gestor de Tareas" class="logo__imagen" />
+        <figcaption class="logo__texto"> Gestor de Tareas</figcaption>
+      </figure>
+      <ul class="nav__lista" role="list">
+        <li class="nav__item"><a href="#formulario" class="nav__enlace">Nueva Tarea</a></li>
+        <li class="nav__item"><a href="#tablero" class="nav__enlace">Tablero</a></li>
+        <li class="nav__item"><a href="#contacto" class="nav__enlace">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="principal">
+
+    <!-- Sección: Formulario para agregar tarea -->
+    <section class="seccion-formulario" id="formulario" aria-labelledby="titulo-formulario">
+      <h1 id="titulo-formulario" class="seccion__titulo">Nueva Tarea</h1>
+      <p class="seccion__subtitulo">Completa los campos para agregar una tarea al tablero</p>
+
+      <article class="tarjeta-formulario">
+        <form id="form-tarea" class="formulario" novalidate>
+          <fieldset class="formulario__grupo">
+            <legend class="formulario__leyenda">Información de la tarea</legend>
+
+            <!-- Título -->
+            <label for="titulo" class="formulario__etiqueta">
+              Título <span class="obligatorio" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="titulo" name="titulo" class="formulario__campo"
+              placeholder="Ej: Crear diseño de pantalla principal"
+              required maxlength="100"
+              aria-required="true" aria-describedby="error-titulo" />
+            <span id="error-titulo" class="formulario__error" role="alert" aria-live="polite"></span>
+
+            <!-- Descripción -->
+            <label for="descripcion" class="formulario__etiqueta">
+              Descripción <span class="obligatorio" aria-hidden="true">*</span>
+            </label>
+            <textarea id="descripcion" name="descripcion"
+              class="formulario__campo formulario__campo--textarea"
+              placeholder="Describe los detalles de la tarea..."
+              required maxlength="300" rows="3"
+              aria-required="true" aria-describedby="error-descripcion"></textarea>
+            <span id="error-descripcion" class="formulario__error" role="alert" aria-live="polite"></span>
+
+            <!-- Prioridad -->
+            <label for="prioridad" class="formulario__etiqueta">
+              Prioridad <span class="obligatorio" aria-hidden="true">*</span>
+            </label>
+            <select id="prioridad" name="prioridad"
+              class="formulario__campo formulario__campo--select"
+              required aria-required="true" aria-describedby="error-prioridad">
+              <option value="">Seleccionar...</option>
+              <option value="alta">Alta</option>
+              <option value="media">Media</option>
+              <option value="baja">Baja</option>
+            </select>
+            <span id="error-prioridad" class="formulario__error" role="alert" aria-live="polite"></span>
+
+            <!-- Fecha límite -->
+            <label for="fecha" class="formulario__etiqueta">
+              Fecha límite <span class="obligatorio" aria-hidden="true">*</span>
+            </label>
+            <input type="date" id="fecha" name="fecha" class="formulario__campo"
+              required aria-required="true" aria-describedby="error-fecha" />
+            <span id="error-fecha" class="formulario__error" role="alert" aria-live="polite"></span>
+
+          </fieldset>
+
+          <button type="submit" class="boton boton--primario" aria-label="Agregar tarea al tablero">
+            <span class="boton__icono" aria-hidden="true">+</span>
+            Agregar Tarea
+          </button>
+        </form>
+      </article>
+    </section>
+
+    <!-- Sección: Tablero Kanban -->
+    <section class="seccion-tablero" id="tablero" aria-labelledby="titulo-tablero">
+      <h2 id="titulo-tablero" class="seccion__titulo">Tablero Kanban</h2>
+      <p class="seccion__subtitulo">Usa los botones de cada tarjeta para cambiar su estado</p>
+
+      <!-- Estadísticas rápidas -->
+      <article class="estadisticas" aria-label="Resumen de tareas">
+        <figure class="estadistica">
+          <output id="total-tareas" class="estadistica__numero" aria-live="polite">0</output>
+          <figcaption class="estadistica__etiqueta">Total</figcaption>
+        </figure>
+        <figure class="estadistica">
+          <output id="total-pendientes" class="estadistica__numero" aria-live="polite">0</output>
+          <figcaption class="estadistica__etiqueta">Pendientes</figcaption>
+        </figure>
+        <figure class="estadistica">
+          <output id="total-progreso" class="estadistica__numero" aria-live="polite">0</output>
+          <figcaption class="estadistica__etiqueta">En Progreso</figcaption>
+        </figure>
+        <figure class="estadistica">
+          <output id="total-completadas" class="estadistica__numero" aria-live="polite">0</output>
+          <figcaption class="estadistica__etiqueta">Completadas</figcaption>
+        </figure>
+      </article>
+
+      <!-- Columnas Kanban -->
+      <article class="tablero" aria-label="Tablero de tareas Kanban">
+
+        <!-- Pendientes -->
+        <section class="columna columna--pendiente" id="pendientes" aria-labelledby="titulo-pendientes">
+          <header class="columna__cabecera">
+            <h3 id="titulo-pendientes" class="columna__titulo">
+              <span class="columna__icono" aria-hidden="true">📋</span> Pendientes
+            </h3>
+            <output class="contador" id="contador-pendientes" aria-label="Tareas pendientes">0</output>
+          </header>
+          <div class="tareas-container" id="contenedor-pendientes" role="list" aria-label="Lista de tareas pendientes"></div>
+        </section>
+
+        <!-- En Progreso -->
+        <section class="columna columna--progreso" id="en-progreso" aria-labelledby="titulo-progreso">
+          <header class="columna__cabecera">
+            <h3 id="titulo-progreso" class="columna__titulo">
+              <span class="columna__icono" aria-hidden="true">⚙️</span> En Progreso
+            </h3>
+            <output class="contador" id="contador-progreso" aria-label="Tareas en progreso">0</output>
+          </header>
+          <div class="tareas-container" id="contenedor-progreso" role="list" aria-label="Lista de tareas en progreso"></div>
+        </section>
+
+        <!-- Completadas -->
+        <section class="columna columna--completada" id="completadas" aria-labelledby="titulo-completadas">
+          <header class="columna__cabecera">
+            <h3 id="titulo-completadas" class="columna__titulo">
+              <span class="columna__icono" aria-hidden="true">✅</span> Completadas
+            </h3>
+            <output class="contador" id="contador-completadas" aria-label="Tareas completadas">0</output>
+          </header>
+          <div class="tareas-container" id="contenedor-completadas" role="list" aria-label="Lista de tareas completadas"></div>
+        </section>
+
+      </article>
+    </section>
+
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie-pagina" id="contacto" role="contentinfo">
+    <address class="contacto">
+      <p class="contacto__item">
+        <span aria-hidden="true">📧</span>
+        <a href="mailto:contacto@gestortareas.cl" class="contacto__enlace">contacto@gestortareas.cl</a>
+      </p>
+      <p class="contacto__item">
+        <span aria-hidden="true">📞</span>
+        <a href="tel:+56912345678" class="contacto__enlace">+56 9 1234 5678</a>
+      </p>
+      <p class="contacto__item">
+        <span aria-hidden="true">📍</span>
+        Temuco, Chile
+      </p>
+    </address>
+    <small class="pie-pagina__derechos">
+      &copy; 2025 Gestor de Tareas · DISEÑO Y DESARROLLO WEB + IA · TU en Informática
+    </small>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

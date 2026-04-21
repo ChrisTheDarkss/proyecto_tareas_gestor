@@ -1,0 +1,88 @@
+/* ============================================================
+   responsive.css - Media queries Mobile First
+   Breakpoints:
+     Móvil:   base (sin media query)
+     Tablet:  min-width 640px
+     Desktop: min-width 1024px
+   ============================================================ */
+
+/* ══════════════════════════════════════
+   TABLET: 640px en adelante
+   ══════════════════════════════════════ */
+@media (min-width: 640px) {
+
+  /* Estadísticas: 4 columnas en tablet */
+  .estadisticas {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Tablero: 1 columna aún (pantalla media) */
+  .tablero {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contacto en fila horizontal */
+  .contacto {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  /* Formulario con dos columnas en tablet */
+  .formulario__grupo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    align-items: start;
+  }
+
+  /* Leyenda y botón ocupan todo el ancho */
+  .formulario__leyenda,
+  .formulario__error,
+  .formulario__campo--textarea {
+    grid-column: 1 / -1;
+  }
+
+}
+
+/* ══════════════════════════════════════
+   DESKTOP: 1024px en adelante
+   ══════════════════════════════════════ */
+@media (min-width: 1024px) {
+
+  /* Tablero: 3 columnas en pantalla grande */
+  .tablero {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Formulario vuelve a 1 columna para mejor legibilidad en pantallas grandes */
+  .formulario__grupo {
+    display: block;
+  }
+
+  /* Tarjeta formulario con ancho máximo centrado */
+  .tarjeta-formulario {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Sección formulario centrada */
+  .seccion-formulario {
+    text-align: center;
+  }
+
+  .seccion-formulario .seccion__titulo,
+  .seccion-formulario .seccion__subtitulo {
+    text-align: center;
+  }
+
+  /* Botón de formulario más compacto en desktop */
+  .boton--primario {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+  }
+
+}
