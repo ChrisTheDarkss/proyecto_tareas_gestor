@@ -1,0 +1,11 @@
+:root {
+  /* Tipografía */
+  --fuente-principal: 'Segoe UI', system-ui, sans-serif;
+  --tamano-base: 16px;
+  --tamano-xs: 0.75rem;
+  --tamano-sm: 0.875rem;
+  --tamano-md: 1rem;
+  --tamano-lg: 1.25rem;
+  --tamano-xl: 1.5rem;
+  --tamano-2xl: 2rem;
+}

@@ -2,7 +2,7 @@
 
 ## Proyecto: Gestor de Tareas - Evaluación N°2
 **Asignatura:** Diseño y Desarrollo Web + IA  
-**Sección:** TU en Informática S-2 Diurno  
+**Sección:** YO en Informática S-2 Diurno  
 **Fecha de entrega:** 22 de abril de 2025  
 **Docente:** Cristian Iglesias Vera
 
@@ -118,5 +118,7 @@ Las siguientes decisiones fueron tomadas por Claude según los criterios de la r
 
 ## 6. Ajustes 
 - Se agrego el logo
-- Se configuro la fecha minima 
--
+- Configure la fecha para no ingresar fechas anteriores 
+- Se agrego el favicon
+- Cambie el archivo de las fuentes  
+- Ajustes correspondiesntes en el html y css
