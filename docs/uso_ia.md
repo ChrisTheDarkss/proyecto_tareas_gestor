@@ -116,9 +116,10 @@ Las siguientes decisiones fueron tomadas por Claude según los criterios de la r
 
 ---
 
-## 6. Ajustes 
-- Se agrego el logo
-- Configure la fecha para no ingresar fechas anteriores 
-- Se agrego el favicon
-- Cambie el archivo de las fuentes  
-- Ajustes correspondiesntes en el html y css
+## 6. Ajustes (Por el estudiante)
+- Se agregó el logo.
+- Configure la fecha para no ingresar fechas anteriores. 
+- Se agregó el favicon.
+- Cambie el archivo de las fuentes.  
+- Ajustes correspondientes en el HTML y CSS.
+- Arreglo en pie de página.
