@@ -107,7 +107,7 @@ body {
 .logo__imagen {
   width: 40px; 
   height: auto;
-  margin-right: var(--espacio-sm); /* Usa tu variable de espaciado para separarlo del texto */
+  margin-right: var(--espacio-sm); 
   display: block;
 }
 
